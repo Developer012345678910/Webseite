@@ -1,0 +1,10 @@
+{
+    "name": "Aquameter",
+    "short_name": "Aquameter",
+    "theme_color": "#00008b",
+    "background_color": "#42a8a3",
+    "display": "fullScreen",
+    "orientation": "portrait",
+    "scope": "/",
+    "start_url": "/index.html"
+}
