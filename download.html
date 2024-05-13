@@ -11,10 +11,78 @@
     <header><h1>Aquameter</h1></header>
     <div class="content" id="content1">
         <p>Konfiguriere die Einstellungen, <br> um zu STARTEN!</p>
+        <select id="s1">
+            <option value="2">Erwachsener</option>
+            <option value="1">Kind</option>
+        </select>
+        <select id="s2">
+            <option value="6">06:00Uhr - 18:00Uhr</option>
+            <option value="7">07:00Uhr - 19:00Uhr</option>
+            <option value="8">08:00Uhr - 20:00Uhr</option>
+            <option value="9">09:00Uhr - 21:00Uhr</option>
+        </select>
+        <select id="s3">
+            <option value="1">20° - 30°</option>
+            <option value="0">0° - 20°</option>
+        </select>
     </div>
     <div class="content" id="content2"></div>
     <button id="button" onclick="runn();">Starten</button>
+    <a href="download.html">App Download hier!</a>
     <script>
+        let running = false;
+        let currentTime = new Date();
+        let drink1 = document.getElementById("s2").value;
+        const audio = new Audio('right.mp3');
+
+        function date_() {
+            drink1 = document.getElementById("s2").value;
+            currentTime = new Date();
+            if (running == true) {
+                if (currentTime.getHours() == parseInt(drink1) && currentTime.getMinutes() == 0 && currentTime.getSeconds() == 1) {
+                    audio.play();
+                    alert_("Es ist " + currentTime.getHours() + "Uhr und Zeit etwas zu trinken! (" + (parseInt(s1.value) + parseInt(s3.value)) / 5 + "L Wasser)");
+                }
+                if (currentTime.getHours() == parseInt(drink1) + 2 && currentTime.getMinutes() == 0 && currentTime.getSeconds() == 1) {
+                    audio.play();
+                    alert_("Es ist " + currentTime.getHours() + "Uhr und Zeit etwas zu trinken! (" + (parseInt(s1.value) + parseInt(s3.value)) / 5 + "L Wasser)");
+                }
+                if (currentTime.getHours() == parseInt(drink1) + 7 && currentTime.getMinutes() == 0 && currentTime.getSeconds() == 1) {
+                    audio.play();
+                    alert_("Es ist " + currentTime.getHours() + "Uhr und Zeit etwas zu trinken! (" + (parseInt(s1.value) + parseInt(s3.value)) / 5 + "L Wasser)");
+                }
+                if (currentTime.getHours() == parseInt(drink1) + 12 && currentTime.getMinutes() == 0 && currentTime.getSeconds() == 1) {
+                    audio.play();
+                    alert_("Noch einmal trinken, dann ist Schlafenszeit! Gute Nacht! (" + (parseInt(s1.value) + parseInt(s3.value)) / 5 + "L Wasser)");
+                }
+                if (currentTime.getHours() == 12 && currentTime.getMinutes() == 0 && currentTime.getSeconds() == 1) {
+                    audio.play();
+                    alert_("Mittagszeit! Guten Appetit und trinken nicht vergessen! (" + (parseInt(s1.value) + parseInt(s3.value)) / 5 + "L Wasser)");
+                }
+            }
+            window.setTimeout(date_, 500);
+        }
+
+        date_();
+
+        function runn() {
+            if (running == true) {
+                running = false;
+                button.innerHTML = 'Starten';
+                content1.style.display = "flex";
+                content2.style.display = "none";
+            } 
+            else {
+                content1.style.display = "none";
+                content2.style.display = "block";
+                running = true;
+                button.innerHTML = 'Abbrechen';
+            }
+        }
+
+        function alert_(value_) {
+            content2.innerHTML = "<p>" + value_ + "</p>";
+        }
     </script>
 </body>
 </html>
